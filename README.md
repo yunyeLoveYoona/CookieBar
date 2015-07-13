@@ -15,6 +15,8 @@
 
 
 设置action并且show()
+
+
 ![image](https://github.com/yunyeLoveYoona/CookieBar/blob/master/app/src/main/res/drawable-xxhdpi/c.png)
 
 
