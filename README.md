@@ -8,12 +8,13 @@
 当用户点击其他View时，消息提醒会自动消失。
 
 
-使用方法也很简单
+创建方法：
 
 
 ![image](https://github.com/yunyeLoveYoona/CookieBar/blob/master/app/src/main/res/drawable-xxhdpi/d.png)
 
 
+设置action并且show()
 ![image](https://github.com/yunyeLoveYoona/CookieBar/blob/master/app/src/main/res/drawable-xxhdpi/c.png)
 
 
