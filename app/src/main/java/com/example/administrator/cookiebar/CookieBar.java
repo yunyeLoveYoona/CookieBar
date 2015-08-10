@@ -15,7 +15,7 @@ import android.widget.TextView;
 /**
  * Created by Administrator on 15-7-13.
  */
-public class CookieBar{
+public class CookieBar {
     private RelativeLayout cookieBarLayout;
     private TextView titleView;
     private TextView action;
@@ -24,16 +24,17 @@ public class CookieBar{
     private static final int ANIMATOR_DURATION = 200;
     private int length;
     private static CookieBar _this;
-    private AnimatorSet showAnimator,disAnimator;
+    private AnimatorSet showAnimator, disAnimator;
     private boolean isDismiss = false;
-    public static CookieBar make(Context context,View rootView,String title,int duration){
-        if(rootView==null){
+
+    public static CookieBar make(Context context, View rootView, String title, int duration) {
+        if (rootView == null) {
             throw new NullPointerException();
         }
         ViewGroup rootGroup = (ViewGroup) rootView.getRootView();
-        if(rootGroup.getChildCount()>1){
+        if (rootGroup.getChildCount() > 1) {
             int count = rootGroup.getChildCount();
-            for(int i =count-1;i>0;i--){
+            for (int i = count - 1; i > 0; i--) {
                 rootGroup.removeView(rootGroup.getChildAt(i));
             }
         }
@@ -46,17 +47,17 @@ public class CookieBar{
         _this.titleView.setText(title);
         _this.length = duration;
         rootGroup.addView(_this.cookieBarLayout);
-        _this.cookieBarLayout.getLayoutParams().height = rootView.getMeasuredHeight()/10;
+        _this.cookieBarLayout.getLayoutParams().height = rootView.getMeasuredHeight() / 10;
         _this.showAnimator = new AnimatorSet();
         _this.disAnimator = new AnimatorSet();
         _this.showAnimator.play(ObjectAnimator.ofFloat(rootView, "translationY",
-                0.0f,0-_this.cookieBarLayout.getLayoutParams().height)).with(
+                0.0f, 0 - _this.cookieBarLayout.getLayoutParams().height)).with(
                 ObjectAnimator.ofFloat(_this.cookieBarLayout, "translationY",
                         rootGroup.getMeasuredHeight(),
-                        rootGroup.getMeasuredHeight()-_this.cookieBarLayout.getLayoutParams().height));
+                        rootGroup.getMeasuredHeight() - _this.cookieBarLayout.getLayoutParams().height));
         _this.showAnimator.setDuration(ANIMATOR_DURATION);
         _this.disAnimator.play(ObjectAnimator.ofFloat(rootView, "translationY",
-                0-_this.cookieBarLayout.getLayoutParams().height,0.0f)).with(
+                0 - _this.cookieBarLayout.getLayoutParams().height, 0.0f)).with(
                 ObjectAnimator.ofFloat(_this.cookieBarLayout, "translationY",
                         rootGroup.getMeasuredHeight() -
                                 _this.cookieBarLayout.getLayoutParams().height,
@@ -76,7 +77,7 @@ public class CookieBar{
                     public void run() {
                         _this.dismiss();
                     }
-                },_this.length);
+                }, _this.length);
             }
 
             @Override
@@ -98,30 +99,37 @@ public class CookieBar{
         });
         return _this;
     }
-    public void show(){
+
+    public void show() {
+        _this.isDismiss = false;
         _this.showAnimator.start();
     }
-    private void dismiss(){
-        if(!_this.isDismiss) {
+
+    private void dismiss() {
+        if (!_this.isDismiss) {
             _this.disAnimator.start();
             _this.isDismiss = true;
         }
     }
-    public CookieBar setAction(String action,View.OnClickListener onClickListener){
+
+    public CookieBar setAction(String action, View.OnClickListener onClickListener) {
         _this.action.setVisibility(View.VISIBLE);
         _this.action.setText(action);
         _this.action.setOnClickListener(onClickListener);
         return this;
     }
-    public CookieBar setActionTextColor(int color){
+
+    public CookieBar setActionTextColor(int color) {
         _this.action.setTextColor(color);
         return this;
     }
-    public CookieBar setBackgroundColor(int color){
+
+    public CookieBar setBackgroundColor(int color) {
         _this.cookieBarLayout.setBackgroundColor(color);
         return this;
     }
-    public CookieBar setTitleColor(int color){
+
+    public CookieBar setTitleColor(int color) {
         _this.titleView.setTextColor(color);
         return this;
     }
