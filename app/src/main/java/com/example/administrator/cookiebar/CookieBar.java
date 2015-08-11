@@ -25,7 +25,7 @@ public class CookieBar {
     private int length;
     private static CookieBar _this;
     private AnimatorSet showAnimator, disAnimator;
-    private boolean isDismiss = false;
+    private boolean isDismiss = true;
 
     public static CookieBar make(Context context, View rootView, String title, int duration) {
         if (rootView == null) {
